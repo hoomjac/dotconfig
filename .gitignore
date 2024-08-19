@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+configstore
+raycast/
+github-copilot/
+superfile/
+epy/
+fish/
