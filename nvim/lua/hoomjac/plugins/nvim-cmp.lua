@@ -36,8 +36,8 @@ cmp.setup({
 	}),
 	-- sources for autocompletion
 	sources = cmp.config.sources({
-		{ name = "copilot", group_index = 1 }, -- Copilot Source
 		{ name = "nvim_lsp", group_index = 1 }, -- lsp
+		{ name = "copilot", group_index = 1 }, -- Copilot Source
 		{ name = "luasnip", group_index = 2 }, -- snippets
 		{ name = "buffer", group_index = 2 }, -- text within current buffer
 		{ name = "path", group_index = 2 }, -- file system paths

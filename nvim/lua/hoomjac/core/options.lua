@@ -15,7 +15,7 @@ opt.number = true -- shows absolute line number on cursor line (when relative nu
 -- encoding
 opt.encoding = "utf-8"
 opt.fileencodings = "utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1"
-opt.termencoding = "utf-8"
+-- opt.termencoding = "utf-8"
 
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)

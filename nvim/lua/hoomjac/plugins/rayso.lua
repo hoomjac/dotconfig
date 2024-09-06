@@ -1,5 +1,3 @@
-
-
 -- import gitsigns plugin safely
 local setup, rayso = pcall(require, "rayso")
 if not setup then
@@ -7,8 +5,8 @@ if not setup then
 end
 
 rayso.setup({
-  open_cmd = 'chromium',
-  options = {
-    theme = 'midnight',
-  }
+	open_cmd = "chromium",
+	options = {
+		theme = "midnight",
+	},
 })
