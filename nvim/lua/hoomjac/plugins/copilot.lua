@@ -1,9 +1,10 @@
-local status, copilot = pcall(require, "copilot")
-if not status then
-	return
-end
-
-copilot.setup({
-	suggestion = { enabled = false },
-	panel = { enabled = false },
-})
+return {
+	"zbirenbaum/copilot.lua",
+	cmd = "Copilot",
+	event = "InsertEnter",
+	opts = {
+		suggestion = { enabled = false },
+		panel = { enabled = false },
+	},
+	config = true,
+}
