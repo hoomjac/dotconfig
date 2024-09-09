@@ -15,7 +15,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
@@ -31,15 +30,18 @@ require("lazy").setup({
 		"voldikss/vim-floaterm", -- float a window above current neovim window(for lazy git floated window)
 		"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
 		-- git integration
-		"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
+		{ "lewis6991/gitsigns.nvim", config = true }, -- show line modifications on left hand side
 		-- SmoothCursor
-		"gen740/SmoothCursor.nvim",
+		{
+			"gen740/SmoothCursor.nvim",
+			config = true,
+		},
 		{ import = "hoomjac.plugins" },
 		{ import = "hoomjac.plugins.lsp" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
-	install = { colorscheme = { "nightfly" } },
+	install = { colorscheme = { "habamax" } },
 	-- automatically check for plugin updates
 	checker = { enabled = true },
 })
