@@ -40,15 +40,15 @@ text = "#080808"
 size = 14
 
 [font.bold]
-family = "Hack Nerd Font Mono"
+family = "CommitMono Nerd Font Mono"
 style = "Bold"
 
 [font.italic]
-family = "Hack Nerd Font Mono"
+family = "CommitMono Nerd Font Mono"
 style = "Italic"
 
 [font.normal]
-family = "Hack Nerd Font Mono"
+family = "CommitMono Nerd Font Mono"
 style = "Regular"
 
 [font.offset]
