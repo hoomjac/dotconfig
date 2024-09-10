@@ -51,6 +51,9 @@ return {
 			git = {
 				ignore = false, -- This ensures .gitignore files are not hidden due to git ignore rules
 			},
+			filters = {
+				custom = { ".DS_Store" },
+			},
 		})
 	end,
 }
