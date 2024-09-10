@@ -48,6 +48,9 @@ return {
 					},
 				},
 			},
+			git = {
+				ignore = false, -- This ensures .gitignore files are not hidden due to git ignore rules
+			},
 		})
 	end,
 }
