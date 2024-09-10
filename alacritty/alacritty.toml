@@ -76,7 +76,7 @@ hide_when_typing = true
 blur = true
 decorations = "buttonless"
 dynamic_padding = false
-opacity = 0.86
+opacity = 0.75
 
 [window.padding]
 x = 8
