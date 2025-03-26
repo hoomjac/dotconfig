@@ -2,10 +2,17 @@ return {
 	"yetone/avante.nvim",
 	event = "VeryLazy",
 	lazy = false,
-	version = false, -- set this if you want to always pull the latest change
+	version = "*", -- set this if you want to always pull the latest change
 	opts = {
 		-- add any opts here
-		provider = "copilot",
+		provider = "bedrock",
+		bedrock = {
+			endpoint = "https://d3tzw5mke0fhaa.cloudfront.net",
+			model = "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
+			timeout = 30000, -- Timeout in milliseconds
+			temperature = 0,
+			max_tokens = 8000,
+		},
 	},
 	build = "make",
 	dependencies = {

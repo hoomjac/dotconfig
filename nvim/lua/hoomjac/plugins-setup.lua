@@ -31,11 +31,6 @@ require("lazy").setup({
 		"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
 		-- git integration
 		{ "lewis6991/gitsigns.nvim", config = true }, -- show line modifications on left hand side
-		-- SmoothCursor
-		{
-			"gen740/SmoothCursor.nvim",
-			config = true,
-		},
 		{ import = "hoomjac.plugins" },
 		{ import = "hoomjac.plugins.lsp" },
 	},
