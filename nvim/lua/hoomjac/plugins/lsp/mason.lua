@@ -25,18 +25,18 @@ return {
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("mason-null-ls").setup({
 				ensure_installed = {
 					"prettier",
 					"stylua",
-					"eslint_d",
 					"black",
 					"flake8",
 				},
 				automatic_installation = true,
 			})
 		end,
-		dependencies = { "williamboman/mason.nvim", "nvim-lua/plenary.nvim" },
+		dependencies = { "williamboman/mason.nvim", "nvimtools/none-ls.nvim"},
 	},
 }

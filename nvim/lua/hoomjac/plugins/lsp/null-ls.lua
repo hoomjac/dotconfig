@@ -1,12 +1,17 @@
 return {
-	"jose-elias-alvarez/null-ls.nvim",
+	"nvimtools/none-ls.nvim",
 	dependencies = {
-		"nvim-lua/plenary.nvim",
+		"nvimtools/none-ls-extras.nvim", -- Add this dependency
 	},
 	config = function()
 		local null_ls = require("null-ls")
 		local formatting = null_ls.builtins.formatting
-		local diagnostics = null_ls.builtins.diagnostics
+
+		-- Import the rustfmt from none-ls-extras
+		local rustfmt = require("none-ls.formatting.rustfmt")
+
+		-- Also import flake8 from none-ls-extras since it's been moved too
+		local flake8 = require("none-ls.diagnostics.flake8")
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
@@ -14,16 +19,9 @@ return {
 			sources = {
 				formatting.prettier,
 				formatting.stylua,
-				formatting.rustfmt,
+				rustfmt, -- Use the imported rustfmt
 				formatting.black,
-				diagnostics.flake8,
-				diagnostics.eslint_d.with({
-					condition = function(utils)
-						return utils.root_has_file(".eslintrc.js")
-							or utils.root_has_file(".eslintrc")
-							or utils.root_has_file(".eslintrc.json")
-					end,
-				}),
+				flake8, -- Use the imported flake8
 			},
 			on_attach = function(current_client, bufnr)
 				if current_client.supports_method("textDocument/formatting") then

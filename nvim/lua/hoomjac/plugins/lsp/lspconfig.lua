@@ -48,6 +48,11 @@ return {
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
+		-- local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
+		-- for type, icon in pairs(signs) do
+		-- 	local hl = "DiagnosticSign" .. type
+		-- 	vim.diagnostic.signs.define(hl, { text = icon, texthl = hl, numhl = "" })
+		-- end
 
 		local function get_typescript_server_path(root_dir)
 			local global_ts = "/Users/hoomjac/.npm/lib/node_modules/typescript/lib"
@@ -137,6 +142,21 @@ return {
 					},
 				},
 			},
+		})
+
+		-- Add ESLint configuration here
+		lspconfig["eslint"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			root_dir = function(filename, bufnr)
+				-- Use lspconfig's utility function to check for eslint config files
+				local util = require("lspconfig.util")
+				local root = util.root_pattern(".eslintrc.js", ".eslintrc", ".eslintrc.json")(filename, bufnr)
+
+				-- Only return a root directory if an eslint config file exists
+				-- If nil is returned, the server won't start for this file
+				return root
+			end,
 		})
 	end,
 }

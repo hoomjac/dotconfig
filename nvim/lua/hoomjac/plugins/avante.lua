@@ -2,16 +2,28 @@ return {
 	"yetone/avante.nvim",
 	event = "VeryLazy",
 	lazy = false,
-	version = "*", -- set this if you want to always pull the latest change
+	version = false, -- set this if you want to always pull the latest change
 	opts = {
 		-- add any opts here
-		provider = "bedrock",
-		bedrock = {
-			endpoint = "https://d3tzw5mke0fhaa.cloudfront.net",
-			model = "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
-			timeout = 30000, -- Timeout in milliseconds
-			temperature = 0,
-			max_tokens = 8000,
+		provider = "copilot",
+		providers = {
+			bedrock = {
+				model = "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
+				timeout = 30000, -- Timeout in milliseconds
+				extra_request_body = {
+					temperature = 0,
+					max_tokens = 20480,
+				},
+			},
+			copilot = {
+				model = "claude-sonnet-4",
+				allow_insecure = false, -- Allow insecure server connections
+				timeout = 30000, -- Timeout in milliseconds
+				extra_request_body = {
+					temperature = 0.1,
+					max_tokens = 20480,
+				},
+			},
 		},
 	},
 	build = "make",
@@ -21,7 +33,6 @@ return {
 		"MunifTanjim/nui.nvim",
 		--- The below dependencies are optional,
 		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-		"zbirenbaum/copilot.lua", -- for providers='copilot'
 		{
 			-- support for image pasting
 			"HakonHarnes/img-clip.nvim",
