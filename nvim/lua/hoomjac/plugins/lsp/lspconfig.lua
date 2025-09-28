@@ -5,7 +5,6 @@ return {
 		"glepnir/lspsaga.nvim",
 	},
 	config = function()
-		local lspconfig = require("lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local util = require("lspconfig.util")
 
@@ -42,6 +41,15 @@ return {
 		end
 
 		local capabilities = cmp_nvim_lsp.default_capabilities()
+		local base_config = {
+			capabilities = capabilities,
+			on_attach = on_attach,
+		}
+
+		local function setup_server(name, opts)
+			vim.lsp.config(name, vim.tbl_deep_extend("force", {}, base_config, opts or {}))
+			vim.lsp.enable(name)
+		end
 
 		local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
 		for type, icon in pairs(signs) do
@@ -70,14 +78,9 @@ return {
 			end
 		end
 
-		lspconfig["html"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		setup_server("html")
 
-		lspconfig["ts_ls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
+		setup_server("ts_ls", {
 			init_options = {
 				preferences = {
 					disableSuggestions = true,
@@ -85,50 +88,33 @@ return {
 			},
 		})
 
-		lspconfig["cssls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		setup_server("cssls")
 
-		lspconfig["tailwindcss"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		setup_server("tailwindcss")
 
-		lspconfig["emmet_ls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
+		setup_server("emmet_ls", {
 			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 		})
 
-		lspconfig["volar"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
+		setup_server("volar", {
 			on_new_config = function(new_config, new_root_dir)
-				new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
+				if new_config.init_options and new_config.init_options.typescript then
+					new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
+				end
 			end,
 		})
 
-		lspconfig["rust_analyzer"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
+		setup_server("rust_analyzer", {
 			filetypes = { "rust" },
 		})
 
-		lspconfig["pyright"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
+		setup_server("pyright", {
 			filetypes = { "python" },
 		})
 
-		lspconfig["prismals"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		setup_server("prismals")
 
-		lspconfig["lua_ls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
+		setup_server("lua_ls", {
 			settings = {
 				Lua = {
 					diagnostics = {
@@ -145,18 +131,9 @@ return {
 		})
 
 		-- Add ESLint configuration here
-		lspconfig["eslint"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			root_dir = function(filename, bufnr)
-				-- Use lspconfig's utility function to check for eslint config files
-				local util = require("lspconfig.util")
-				local root = util.root_pattern(".eslintrc.js", ".eslintrc", ".eslintrc.json")(filename, bufnr)
-
-				-- Only return a root directory if an eslint config file exists
-				-- If nil is returned, the server won't start for this file
-				return root
-			end,
+		setup_server("eslint", {
+			-- Only start eslint when a config file is present.
+			root_dir = util.root_pattern(".eslintrc.js", ".eslintrc", ".eslintrc.json"),
 		})
 	end,
 }
