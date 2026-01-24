@@ -16,7 +16,7 @@ return {
 				},
 			},
 			copilot = {
-				model = "claude-sonnet-4",
+				model = "claude-opus-4.5",
 				allow_insecure = false, -- Allow insecure server connections
 				timeout = 30000, -- Timeout in milliseconds
 				extra_request_body = {

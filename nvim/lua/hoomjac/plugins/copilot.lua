@@ -2,6 +2,7 @@ return {
 	"zbirenbaum/copilot.lua",
 	cmd = "Copilot",
 	event = "InsertEnter",
+	commit = "2b368ce",
 	opts = {
 		suggestion = { enabled = false },
 		panel = { enabled = false },

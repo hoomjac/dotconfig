@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "google_auth": false,
+  "agents": {
+    "Sisyphus": {
+      "model": "quotio/omini-claude-opus-4-5-20251101"
+    },
+    "Planner-Sisyphus": {
+      "model": "quotio/omini-claude-opus-4-5-20251101"
+    },
+    "oracle": {
+      "model": "quotio/omini-claude-opus-4-5-20251101"
+    },
+    "librarian": {
+      "model": "quotio/omini-claude-sonnet-4-5-20250929"
+    },
+    "explore": {
+      "model": "quotio/omini-gemini-3-flash-preview"
+    },
+    "frontend-ui-ux-engineer": {
+      "model": "quotio/omini-gemini-3-pro-preview"
+    },
+    "multimodal-looker": {
+      "model": "quotio/omini-gemini-3-flash-preview"
+    }
+  }
+}
